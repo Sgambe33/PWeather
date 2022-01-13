@@ -1,13 +1,10 @@
 # Import Meteostat library and dependencies
-from asyncio import sleep
-from logging import exception
-import math
-from multiprocessing.connection import wait
-from fpdf import *
+from __future__ import barry_as_FLUFL
+import os
 from meteostat import *
 from geopy.geocoders import *
 from datetime import *
-from prettytable import PrettyTable
+import time
 from urllib.request import urlopen
 import json
 import matplotlib.pyplot as plt
@@ -32,8 +29,8 @@ def getLocationFromIP():
             return ipInfo
         except:
             print("Errore di connessione...")
-            print("Ritento...")
-        sleep(5)
+            print("Ritento tra 15s...")
+            time.sleep(15)
             
 
 def getStationIdWithIp(ipdata):
@@ -68,65 +65,60 @@ while True:
         case "3":
             print("Funzionalità in corso di sviluppo. Non disponibile.")
         case "4":
+            #Inserimento delle date di inizio e fine registri
             print("Data di inizio dei registri:")
-            #dataS = input('Enter a date in YYYY-MM-DD format')
-            #anno, mese, giorno = map(int, dataS.split('-'))
-            start = datetime(2020, 11, 1)
-            #####################################################
-            #dataE = input('Enter a date in YYYY-MM-DD format')
-            #anno, mese, giorno = map(int, dataE.split('-'))
-            end = datetime(2022, 2, 10)
-            #####################################################
-            print("Posizione: ")
-            cityName = input()
-            stations = Stations()
-            city = getPosFromCity(cityName) 
-            stations = stations.nearby(city.latitude, city.longitude)
+            dataS = input('Enter a START date in YYYY-MM-DD format')
+            anno, mese, giorno = map(int, dataS.split('-'))
+            start = datetime(anno, mese, giorno)
+            #-------------------------------------------------------#
+            dataE = input('Enter an END date in YYYY-MM-DD format')
+            anno, mese, giorno = map(int, dataE.split('-'))
+            end = datetime(anno, mese, giorno)
+            #-------------------------------------------------------#
+            #Chiedo all'utente di inserire la loc. desiderata. Se non è trovata stampo errore e richiedo.
+            while True:
+                try:
+                    print("Località: ")
+                    cityName = input()
+                    stations = Stations()
+                    city = getPosFromCity(cityName) 
+                    stations = stations.nearby(city.latitude, city.longitude)
+                    break
+                except:
+                    print("Località non trovata.Riprova")
+                    
+            
             station = stations.fetch(1)
             stationId = station.filter(['id'])
             
-            data = Monthly(stationId, start, end)
-            
+            data = Daily(stationId, start, end)
             data = data.fetch() 
+            print(data)
+            #Chiedo il tipo di formato in cui salvare il file
             print("In che formato salvare i dati?")
             print("1. HTML")
-            print("2. PDF")
-            print("3. CSV")
-            print("4. JSON")
+            print("2. CSV")
+            print("3. JSON")
+            print("4. Esci")
             fileType = input()
+            
             match fileType:
                 case "1":
                     data.to_html("records.html")
                 case "2":
-                    pdf = FPDF()  
-                    pdf.add_page()
-                    pdf.set_font("Arial", size = 15)
-                    f = open("myfile.txt", "w")
-                    pdf.cell(200, 10, txt = data, ln = 1, align = 'C')
-                    pdf.output("records.pdf")   
-                case "3":
                     data.to_csv("records.csv")
+                case "3":
+                    data.to_json("records.json")    
                 case "4":
-                    data.to_json("records.json")
-                
-        case "5":
+                    break
+                case _:
+                    print("Opzione non valida!")  
+        case "4":
             exit()
         case _:
             print("Opzione non valida!")
 
 
-
-
-
-
-
-
-""" print("Dove sei??")
-try:
-    gps = getLocationFromIP()
-    print(gps['city'], gps['region'], gps['country'])
-except:
-    print("Impossibile ottenere la tua posizione!") """
 
 
 
