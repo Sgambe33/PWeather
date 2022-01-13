@@ -1,6 +1,8 @@
 # Import Meteostat library and dependencies
+from asyncio import sleep
 from logging import exception
 import math
+from multiprocessing.connection import wait
 from fpdf import *
 from meteostat import *
 from geopy.geocoders import *
@@ -27,11 +29,12 @@ def getLocationFromIP():
         try:
             response = urlopen(url)
             ipInfo = json.load(response)
+            return ipInfo
         except:
             print("Errore di connessione...")
             print("Ritento...")
-        finally:
-            return ipInfo
+        sleep(5)
+            
 
 def getStationIdWithIp(ipdata):
     stations = Stations()
@@ -40,20 +43,13 @@ def getStationIdWithIp(ipdata):
     station = stations.fetch(1)
     stationId = station.filter(['id'])
     return stationId
-    
-start= datetime(2022, 1, 1)
-end = datetime.today()
-
-data = Daily('16124', start, end )
-data = data.fetch() 
-print(data)
 
 while True:
     print("1. Mostra il meteo dell'ultima settimana.")
     print("2. Mostra il meteo di oggi.")
     print("3. Mostra le previsioni meteo. (WIP)")
     print("4. Mostra i registri meteo.")
-    print("4. Esci")
+    print("5. Esci")
     
     scelta = input()
     ipData = getLocationFromIP()
@@ -73,13 +69,13 @@ while True:
             print("Funzionalità in corso di sviluppo. Non disponibile.")
         case "4":
             print("Data di inizio dei registri:")
-            dataS = input('Enter a date in YYYY-MM-DD format')
-            anno, mese, giorno = map(int, dataS.split('-'))
-            start = datetime.date(anno, mese, giorno)
+            #dataS = input('Enter a date in YYYY-MM-DD format')
+            #anno, mese, giorno = map(int, dataS.split('-'))
+            start = datetime(2020, 11, 1)
             #####################################################
-            dataE = input('Enter a date in YYYY-MM-DD format')
-            anno, mese, giorno = map(int, dataE.split('-'))
-            end = datetime.date(anno, mese, giorno)
+            #dataE = input('Enter a date in YYYY-MM-DD format')
+            #anno, mese, giorno = map(int, dataE.split('-'))
+            end = datetime(2022, 2, 10)
             #####################################################
             print("Posizione: ")
             cityName = input()
@@ -105,7 +101,7 @@ while True:
                     pdf = FPDF()  
                     pdf.add_page()
                     pdf.set_font("Arial", size = 15)
-                    f = open("myfile.txt", "r")
+                    f = open("myfile.txt", "w")
                     pdf.cell(200, 10, txt = data, ln = 1, align = 'C')
                     pdf.output("records.pdf")   
                 case "3":
