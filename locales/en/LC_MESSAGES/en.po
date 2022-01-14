@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2022-01-14 11:39+0100\n"
+"PO-Revision-Date: 2022-01-14 17:43+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: showMeteo.py:32
+msgid "Errore di connessione..."
+msgstr "Connection error..."
+
+#: showMeteo.py:33
+msgid "Ritento tra 15s..."
+msgstr "Trying again in 15s..."
+
+#: showMeteo.py:46
+msgid "1. Mostra il meteo dell'ultima settimana."
+msgstr "1. Show last week weather."
+
+#: showMeteo.py:47
+msgid "2. Mostra il meteo di oggi."
+msgstr "2. Show today weather."
+
+#: showMeteo.py:48
+msgid "3. Mostra le previsioni meteo. (WIP)"
+msgstr "3. Show weather forecast. (WIP)"
+
+#: showMeteo.py:49
+msgid "4. Mostra i registri meteo."
+msgstr "4. Show weather records."
+
+#: showMeteo.py:50
+msgid "5. Esci"
+msgstr "5. Exit"
+
+#: showMeteo.py:67
+msgid "Funzionalità in corso di sviluppo. Non disponibile."
+msgstr "Features under development. Unavailable."
+
+#: showMeteo.py:70
+msgid "Data di inizio dei registri:"
+msgstr "Start date of the records:"
+
+#: showMeteo.py:71
+msgid "Enter a START date in YYYY-MM-DD format"
+msgstr "Enter a START date in YYYY-MM-DD format"
+
+#: showMeteo.py:75
+msgid "Enter an END date in YYYY-MM-DD format"
+msgstr "Enter an END date in YYYY-MM-DD format"
+
+#: showMeteo.py:82
+msgid "Località: "
+msgstr "Location:"
+
+#: showMeteo.py:89
+msgid "Località non trovata.Riprova"
+msgstr "Location not found. Try again."
+
+#: showMeteo.py:99
+msgid "In che formato salvare i dati?"
+msgstr "How do you want to save this data?"
+
+#: showMeteo.py:103
+msgid "4. Esci"
+msgstr "4. Exit"
+
+#: showMeteo.py:116 showMeteo.py:120
+msgid "Opzione non valida!"
+msgstr "Invalid option!"

@@ -1,18 +1,19 @@
-# Import Meteostat library and dependencies
-import os
 from meteostat import *
 from geopy.geocoders import *
+from urllib.request import urlopen
 from datetime import *
 import time
-from urllib.request import urlopen
+import os
 import json
 import matplotlib.pyplot as plt
 import gettext
-#_ = gettext.gettext
 
-en = gettext.translation('base', localedir='locales', languages=['en'])
+
+en = gettext.translation('en', localedir='locales', languages=['en'])
+it = gettext.translation('it', localedir='locales', languages=['it'])
 en.install()
-_ = en.gettext # English
+it.install()
+_ = it.gettext
 
 geolocator = Nominatim(user_agent="testgeopy")
 
@@ -37,7 +38,6 @@ def getLocationFromIP():
             print(_("Ritento tra 15s..."))
             time.sleep(15)
             
-
 def getStationIdWithIp(ipdata):
     stations = Stations()
     city = getPosFromCity(ipdata['city']) 
@@ -92,13 +92,13 @@ while True:
                 except:
                     print(_("Località non trovata.Riprova"))
                     
-            
             station = stations.fetch(1)
             stationId = station.filter(['id'])
             
             data = Daily(stationId, start, end)
             data = data.fetch() 
             print(data)
+            
             #Chiedo il tipo di formato in cui salvare il file
             print(_("In che formato salvare i dati?"))
             print("1. HTML")
@@ -122,13 +122,3 @@ while True:
             exit()
         case _:
             print(_("Opzione non valida!"))
-
-
-
-
-
-
-
-
-
-
