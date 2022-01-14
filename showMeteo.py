@@ -3,7 +3,6 @@ from geopy.geocoders import *
 from urllib.request import urlopen
 from datetime import *
 import time
-import os
 import json
 import matplotlib.pyplot as plt
 import gettext
