@@ -1,11 +1,7 @@
+import utils
 from meteostat import *
 from geopy.geocoders import *
-from urllib.request import urlopen
 from datetime import *
-import time
-import os
-import json
-import matplotlib.pyplot as plt
 import gettext
 
 
@@ -17,34 +13,7 @@ _ = it.gettext
 
 geolocator = Nominatim(user_agent="testgeopy")
 
-def getPosFromCity(cityName):
-    location=geolocator.geocode(cityName)
-    return location
 
-def getPlaceFromCity(cityName):
-    location = getPosFromCity(cityName=cityName)
-    place = Point(location.latitude, location.longitude, 10)
-    return place
-
-def getLocationFromIP():
-    url = 'http://ipinfo.io/json'
-    while True:
-        try:
-            response = urlopen(url)
-            ipInfo = json.load(response)
-            return ipInfo
-        except:
-            print(_("Errore di connessione..."))
-            print(_("Ritento tra 15s..."))
-            time.sleep(15)
-            
-def getStationIdWithIp(ipdata):
-    stations = Stations()
-    city = getPosFromCity(ipdata['city']) 
-    stations = stations.nearby(city.latitude, city.longitude)
-    station = stations.fetch(1)
-    stationId = station.filter(['id'])
-    return stationId
 
 while True:
     print(_("1. Mostra il meteo dell'ultima settimana."))
@@ -54,18 +23,18 @@ while True:
     print(_("5. Esci"))
     
     scelta = input()
-    ipData = getLocationFromIP()
+    ipData = utils.getLocationFromIP()
     match scelta:
         case "1":
             start = datetime.today() - timedelta(days=7)
             end = datetime.today() 
-            data = Daily(getStationIdWithIp(ipData), start, end )
+            data = Daily(utils.getStationIdWithIp(ipData), start, end )
             data = data.fetch() 
             print(data) 
         case "2":
             start = datetime.now() - timedelta(hours=24)
             end = datetime.now()
-            data = Hourly(getStationIdWithIp(ipData), start, end )
+            data = Hourly(utils.getStationIdWithIp(ipData), start, end )
             data = data.fetch() 
         case "3":
             print(_("Funzionalità in corso di sviluppo. Non disponibile."))
@@ -86,7 +55,7 @@ while True:
                     print(_("Località: "))
                     cityName = input()
                     stations = Stations()
-                    city = getPosFromCity(cityName) 
+                    city = utils.getPosFromCity(cityName) 
                     stations = stations.nearby(city.latitude, city.longitude)
                     break
                 except:
