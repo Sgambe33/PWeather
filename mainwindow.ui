@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.1">
+  <object class="ttk.Frame" id="frame1">
+    <property name="borderwidth">5</property>
+    <property name="height">500</property>
+    <property name="relief">ridge</property>
+    <property name="width">750</property>
+    <layout manager="pack">
+      <property name="propagate">True</property>
+      <property name="side">top</property>
+    </layout>
+    <child>
+      <object class="ttk.Frame" id="localFrame">
+        <property name="borderwidth">5</property>
+        <property name="height">490</property>
+        <property name="relief">ridge</property>
+        <property name="width">500</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="x">0</property>
+          <property name="y">0</property>
+        </layout>
+        <child>
+          <object class="ttk.Label" id="label3">
+            <property name="anchor">center</property>
+            <property name="text" translatable="yes">label3</property>
+            <layout manager="pack">
+              <property name="propagate">True</property>
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="sideFrame">
+        <property name="borderwidth">5</property>
+        <property name="height">490</property>
+        <property name="relief">ridge</property>
+        <property name="width">240</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="x">500</property>
+          <property name="y">0</property>
+        </layout>
+        <child>
+          <object class="ttk.Frame" id="appTitle">
+            <property name="borderwidth">5</property>
+            <property name="height">70</property>
+            <property name="relief">ridge</property>
+            <property name="width">240</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="x">-5</property>
+              <property name="y">-5</property>
+            </layout>
+            <child>
+              <object class="ttk.Label" id="label1">
+                <property name="font">TkTextFont</property>
+                <property name="text" translatable="yes">PYMETEO</property>
+                <property name="width">38</property>
+                <layout manager="place">
+                  <property name="anchor">nw</property>
+                  <property name="width">230</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Frame" id="menuFrame">
+            <property name="borderwidth">5</property>
+            <property name="height">425</property>
+            <property name="relief">ridge</property>
+            <property name="width">240</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="x">-5</property>
+              <property name="y">60</property>
+            </layout>
+            <child>
+              <object class="ttk.Button" id="lstWeekBtn">
+                <property name="command" type="command" cbtype="simple">lstWeekBtn</property>
+                <property name="text" translatable="yes">Last week weather</property>
+                <property name="width">36</property>
+                <layout manager="place">
+                  <property name="anchor">nw</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="weatherForecastBtn">
+                <property name="command" type="command" cbtype="simple">weatherForecastBtn</property>
+                <property name="text" translatable="yes">Weather forecast</property>
+                <property name="width">36</property>
+                <layout manager="place">
+                  <property name="anchor">nw</property>
+                  <property name="y">30</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="weatherRecords">
+                <property name="command" type="command" cbtype="simple">weatherRecordsBtn</property>
+                <property name="text" translatable="yes">Weather records</property>
+                <property name="width">36</property>
+                <layout manager="place">
+                  <property name="anchor">nw</property>
+                  <property name="x">0</property>
+                  <property name="y">60</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="optionsBtn">
+                <property name="command" type="command" cbtype="simple">optionsBtn</property>
+                <property name="text" translatable="yes">Options</property>
+                <layout manager="place">
+                  <property name="x">0</property>
+                  <property name="y">90</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

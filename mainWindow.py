@@ -1,28 +1,34 @@
-from utils import *
-import tkinter as tk
+import tkinter as tk  # for python 3
+from tkinter import messagebox
+import pygubu
+import utils
 from tkinter import *
-import tkinter.font as tkFont
 
-def main():
-    def getCityName():
-        ipdata = getLocationFromIP()
-        return ipdata['city']
+class Application:
+    def __init__(self, master):
+        self.builder = builder = pygubu.Builder()
+        builder.add_from_file('mainwindow.ui')
+        self.mainwindow = builder.get_object('frame1', master)
+        
+        fps_lable = self.builder.get_object('label3')
+        ipdata = utils.getLocationFromIP()
+        fps_lable.config(text=ipdata['city']) 
+        
+        builder.connect_callbacks(self)
 
-    root = tk.Tk()
-    root.title("PyMeteo")
-    root.geometry('700x400')
-    root.configure(background='white')
-
-    cityname_font = tkFont.Font(family='Calibri', size=30)
-
-    mainframe = Frame(root, height=400, width=500, bg='lightblue')
-    mainframe.pack_propagate(False) 
-    mainframe.pack(side=LEFT)
-
-    citynameLabel = Label(mainframe, text=getCityName(), font=cityname_font )
-    citynameLabel.pack()
-
-    root.mainloop()
-    pass
-if __name__ == "__main__":
-    main()
+    def lstWeekBtn(self):
+        messagebox.showinfo(title="Ultima settimana", message="Ecco il meteo dell'ultima settimana")   
+        
+    def weatherForecastBtn(self):
+        messagebox.showinfo(title="Previsioni meteo", message="Ecco le previsioni")
+        
+    def weatherRecordsBtn(self):
+        messagebox.showinfo(title="Archivi dati", message="Ecco gli archivi dati")
+        
+    def optionsBtn(self):
+        messagebox.showinfo(title="Impostazioni", message="Hai aperto le impostazioni")
+        
+root = tk.Tk()
+app = Application(root)
+  
+root.mainloop()

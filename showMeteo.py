@@ -50,21 +50,20 @@ while True:
             end = datetime(anno, mese, giorno)
             #-------------------------------------------------------#
             #Chiedo all'utente di inserire la loc. desiderata. Se non è trovata stampo errore e richiedo.
-            while True:
-                try:
-                    print(_("Località: "))
-                    cityName = input()
-                    stations = Stations()
-                    city = utils.getPosFromCity(cityName) 
-                    stations = stations.nearby(city.latitude, city.longitude)
-                    break
-                except:
-                    print(_("Località non trovata.Riprova"))
+            try:
+                print(_("Località: "))
+                cityName = input()
+                stations = Stations()
+                city = utils.getPosFromCity(cityName) 
+                stations = stations.nearby(city.latitude, city.longitude)
+                break
+            except:
+                print(_("Località non trovata.Riprova"))
                     
             station = stations.fetch(1)
             stationId = station.filter(['id'])
             
-            data = Daily(stationId, start, end)
+            data = Hourly(stationId, start, end)
             data = data.fetch() 
             print(data)
             
