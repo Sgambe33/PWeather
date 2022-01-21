@@ -11,6 +11,7 @@ en.install()
 it.install()
 _ = it.gettext
 #Function declaration part
+geolocator = Nominatim(user_agent="testgeopy")
 def getPosFromCity(cityName):
     location=geolocator.geocode(cityName)
     return location

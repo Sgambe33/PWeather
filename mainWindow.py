@@ -1,7 +1,9 @@
+from datetime import *
 import tkinter as tk  # for python 3
 from tkinter import messagebox
 import pygubu
 import utils
+from meteostat import *
 from tkinter import *
 
 class Application:
@@ -17,7 +19,12 @@ class Application:
         builder.connect_callbacks(self)
 
     def lstWeekBtn(self):
-        messagebox.showinfo(title="Ultima settimana", message="Ecco il meteo dell'ultima settimana")   
+        start = datetime.today() - timedelta(days=7)
+        end = datetime.today() 
+        ipData = utils.getLocationFromIP()
+        data = Daily(utils.getStationIdWithIp(ipData), start, end )
+        data = data.fetch() 
+        messagebox.showinfo(title="Ultima settimana", message=str(data))   
         
     def weatherForecastBtn(self):
         messagebox.showinfo(title="Previsioni meteo", message="Ecco le previsioni")
