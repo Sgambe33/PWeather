@@ -16,17 +16,17 @@
         <property name="relief">ridge</property>
         <property name="width">500</property>
         <layout manager="place">
-          <property name="anchor">nw</property>
           <property name="x">0</property>
           <property name="y">0</property>
         </layout>
         <child>
-          <object class="ttk.Label" id="label3">
-            <property name="anchor">center</property>
-            <property name="text" translatable="yes">label3</property>
-            <layout manager="pack">
-              <property name="propagate">True</property>
-              <property name="side">top</property>
+          <object class="ttk.Treeview" id="treeview1">
+            <property name="height">23</property>
+            <property name="selectmode">extended</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
             </layout>
           </object>
         </child>
@@ -57,7 +57,7 @@
             <child>
               <object class="ttk.Label" id="label1">
                 <property name="font">TkTextFont</property>
-                <property name="text" translatable="yes">PYMETEO</property>
+                <property name="text" translatable="yes">PWEATHER</property>
                 <property name="width">38</property>
                 <layout manager="place">
                   <property name="anchor">nw</property>

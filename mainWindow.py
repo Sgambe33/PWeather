@@ -1,4 +1,6 @@
 from datetime import *
+from operator import index
+import random
 import tkinter as tk  # for python 3
 from tkinter import messagebox
 import pygubu
@@ -12,10 +14,9 @@ class Application:
         builder.add_from_file('mainwindow.ui')
         self.mainwindow = builder.get_object('frame1', master)
         
-        fps_lable = self.builder.get_object('label3')
+        #fps_lable = self.builder.get_object('label3')
         ipdata = utils.getLocationFromIP()
-        fps_lable.config(text=ipdata['city']) 
-        
+        #fps_lable.config(text=ipdata['city']) 
         builder.connect_callbacks(self)
 
     def lstWeekBtn(self):
