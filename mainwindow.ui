@@ -20,11 +20,104 @@
           <property name="y">0</property>
         </layout>
         <child>
-          <object class="ttk.Treeview" id="treeview1">
-            <property name="height">23</property>
-            <property name="selectmode">extended</property>
+          <object class="ttk.Frame" id="weatherIconFrame">
+            <property name="borderwidth">5</property>
+            <property name="height">50</property>
+            <property name="relief">ridge</property>
+            <property name="width">50</property>
             <layout manager="place">
               <property name="anchor">nw</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+            <child>
+              <object class="ttk.Label" id="weatherIconLabel">
+                <property name="text" translatable="yes">label3</property>
+                <layout manager="place">
+                  <property name="anchor">nw</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Frame" id="temperature">
+            <property name="borderwidth">5</property>
+            <property name="height">50</property>
+            <property name="relief">ridge</property>
+            <property name="width">70</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.1</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+            <child>
+              <object class="ttk.Frame" id="switchC">
+                <property name="borderwidth">5</property>
+                <property name="height">20</property>
+                <property name="relief">ridge</property>
+                <property name="width">20</property>
+                <layout manager="place">
+                  <property name="anchor">nw</property>
+                  <property name="relx">0.7</property>
+                  <property name="rely">0</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Frame" id="switchF">
+                <property name="borderwidth">5</property>
+                <property name="height">20</property>
+                <property name="relief">ridge</property>
+                <property name="width">20</property>
+                <layout manager="place">
+                  <property name="anchor">nw</property>
+                  <property name="relx">0.7</property>
+                  <property name="rely">0.5</property>
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Frame" id="localNameFrame">
+            <property name="borderwidth">5</property>
+            <property name="height">50</property>
+            <property name="relief">ridge</property>
+            <property name="width">150</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.695</property>
+              <property name="x">0</property>
+              <property name="y">0</property>
+            </layout>
+            <child>
+              <object class="ttk.Label" id="localName">
+                <property name="text" translatable="yes">localName</property>
+                <layout manager="place">
+                  <property name="x">0</property>
+                  <property name="y">0</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Frame" id="localTime">
+            <property name="borderwidth">5</property>
+            <property name="height">50</property>
+            <property name="relief">ridge</property>
+            <property name="width">100</property>
+            <layout manager="place">
+              <property name="anchor">nw</property>
+              <property name="relx">0.389</property>
               <property name="x">0</property>
               <property name="y">0</property>
             </layout>

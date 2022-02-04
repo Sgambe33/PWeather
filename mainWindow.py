@@ -1,9 +1,8 @@
 from datetime import *
-from operator import index
-import random
 import tkinter as tk  # for python 3
-from tkinter import messagebox
+from tkinter import messagebox, Image
 import pygubu
+import PIL.Image
 import utils
 from meteostat import *
 from tkinter import *
@@ -13,10 +12,17 @@ class Application:
         self.builder = builder = pygubu.Builder()
         builder.add_from_file('mainwindow.ui')
         self.mainwindow = builder.get_object('frame1', master)
+
         
-        #fps_lable = self.builder.get_object('label3')
+        localName = self.builder.get_object('localName')
+        weatherIconLabel = self.builder.get_object('weatherIconLabel')
+
         ipdata = utils.getLocationFromIP()
-        #fps_lable.config(text=ipdata['city']) 
+        localName.config(text=ipdata['city']) 
+
+        img = PhotoImage(PIL.Image.open("sun.png").resize((50, 50)))
+        weatherIconLabel.image = img
+
         builder.connect_callbacks(self)
 
     def lstWeekBtn(self):
@@ -38,5 +44,4 @@ class Application:
         
 root = tk.Tk()
 app = Application(root)
-  
 root.mainloop()
