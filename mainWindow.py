@@ -1,8 +1,8 @@
 from datetime import *
 import tkinter as tk  # for python 3
-from tkinter import messagebox, Image
+from tkinter import messagebox
 import pygubu
-import PIL.Image
+from PIL import ImageTk, Image
 import utils
 from meteostat import *
 from tkinter import *
@@ -20,8 +20,11 @@ class Application:
         ipdata = utils.getLocationFromIP()
         localName.config(text=ipdata['city']) 
 
-        img = PhotoImage(PIL.Image.open("sun.png").resize((50, 50)))
-        weatherIconLabel.image = img
+        img = Image.open("C:\\Users\\Cosimo\\Desktop\\PyMeteo\\sun.png")
+        img.show()
+        photo1 = ImageTk.PhotoImage(file="C:\\Users\\Cosimo\\Desktop\\PyMeteo\\sun.png")
+        weatherIconLabel.configure(image=photo1)
+        weatherIconLabel.photo = photo1
 
         builder.connect_callbacks(self)
 
