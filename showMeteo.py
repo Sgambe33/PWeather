@@ -34,8 +34,9 @@ while True:
         case "2":
             start = datetime.now() - timedelta(hours=24)
             end = datetime.now()
-            data = Hourly(utils.getStationIdWithIp(ipData), start, end )
+            data = Hourly(utils.getStationIdWithIp(utils.geojsip()), start, end )
             data = data.fetch() 
+            print(data) 
         case "3":
             print(_("Funzionalità in corso di sviluppo. Non disponibile."))
         case "4":
