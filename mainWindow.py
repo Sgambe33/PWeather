@@ -6,6 +6,7 @@ import utils
 from meteostat import *
 from tkinter import *
 
+LOCAL_CITY_NAME = utils.windowsGps()
 class Application:
     #Definizione contenuto labels e frames
     def __init__(self, master):
@@ -19,15 +20,15 @@ class Application:
         localTemperatureLabel = self.builder.get_object('localTemperatureLabel')
         localHumidityLabel = self.builder.get_object('localHumidityLabel')
         localPrecipitationLabel = self.builder.get_object('localPrecipitationLabel')
-        print(utils.geojsip())
-        localName.config(text=utils.geojsip())
+        
+        localName.config(text=LOCAL_CITY_NAME)
         start = datetime.now() - timedelta(0,0,0,0,0,1)
         end = datetime.now() 
-        data = Hourly(utils.getStationIdWithIp(utils.geojsip()), start, end )
+        data = Hourly(utils.getStationIdWithCityName(LOCAL_CITY_NAME), start, end )
         data = data.fetch() 
         print(data)
         localTemperatureLabel.config(text="Temperature: \n" + str(data["temp"][0])+ "°C")
-        localHumidityLabel.config(text="Temperature: \n" + str(data["rhum"][0]) + "%")
+        localHumidityLabel.config(text="Humidity: \n" + str(data["rhum"][0]) + "%")
         localPrecipitationLabel.config(text="Precipitation: \n" + str(data["prcp"][0]) + "ml")
 
         def time():
@@ -44,7 +45,7 @@ class Application:
     def lstWeekBtn(self):
         start = datetime.today() - timedelta(days=7)
         end = datetime.today() 
-        data = Daily(utils.getStationIdWithIp(utils.geojsip()), start, end )
+        data = Daily(utils.getStationIdWithCityName(LOCAL_CITY_NAME), start, end )
         data = data.fetch() 
         messagebox.showinfo(title="Ultima settimana", message=str(data))   
         
