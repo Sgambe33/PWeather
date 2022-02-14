@@ -19,7 +19,7 @@ class Application:
         localTemperatureLabel = self.builder.get_object('localTemperatureLabel')
         localHumidityLabel = self.builder.get_object('localHumidityLabel')
         localPrecipitationLabel = self.builder.get_object('localPrecipitationLabel')
-
+        print(utils.geojsip())
         localName.config(text=utils.geojsip())
         start = datetime.now() - timedelta(0,0,0,0,0,1)
         end = datetime.now() 
