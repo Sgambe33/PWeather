@@ -32,8 +32,9 @@
             </layout>
             <child>
               <object class="ttk.Label" id="weatherIconLabel">
-                <property name="image">sun.png</property>
-                <property name="text" translatable="yes">label3</property>
+                <property name="anchor">center</property>
+                <property name="font">TkDefaultFont</property>
+                <property name="text" translatable="yes">weatherIcon</property>
                 <layout manager="place">
                   <property name="anchor">nw</property>
                   <property name="height">40</property>

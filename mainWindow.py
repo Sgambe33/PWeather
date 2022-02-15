@@ -1,16 +1,16 @@
 from datetime import *
 from tkinter import messagebox
-import requests
 import pygubu
 import utils
 from meteostat import *
 from tkinter import *
 
-url = 'https://wttr.in/?format=%l'
-res = requests.get(url)
-print(res.text)
-
-LOCAL_CITY_NAME = res.text
+LOCATIONQUERY = "/?format=%l"
+TEMPERATUREQUERY = "/?format=%t"
+HUMIDITYQUERY = "/?format=%h"
+PRECIPITATIONQUERY = "/?format=%p"
+WCONDITIONQUERY = "/?format=%c"
+LOCAL_CITY_NAME = utils.getWttr(LOCATIONQUERY)
 class Application:
     #Definizione contenuto labels e frames
     def __init__(self, master):
@@ -25,17 +25,12 @@ class Application:
         localHumidityLabel = self.builder.get_object('localHumidityLabel')
         localPrecipitationLabel = self.builder.get_object('localPrecipitationLabel')
         
-        
-        start = datetime.now() - timedelta(0,0,0,0,0,1)
-        end = datetime.now() 
-        data = Hourly(utils.getStationIdWithCityName(LOCAL_CITY_NAME), start, end )
-        data = data.fetch() 
-        print(data)
-        localTemperatureLabel.config(text="Temperature: \n" + str(data["temp"][0])+ "°C")
-        localHumidityLabel.config(text="Humidity: \n" + str(data["rhum"][0]) + "%")
-        localPrecipitationLabel.config(text="Precipitation: \n" + str(data["prcp"][0]) + "ml")
+        localTemperatureLabel.config(text="Temperature: \n" + utils.getWttr(TEMPERATUREQUERY))
+        localHumidityLabel.config(text="Humidity: \n" + utils.getWttr(HUMIDITYQUERY))
+        localPrecipitationLabel.config(text="Precipitation: \n" + utils.getWttr(PRECIPITATIONQUERY))
         localName.config(text=LOCAL_CITY_NAME)
-        
+        weatherIcon.config(text=utils.getWttr(WCONDITIONQUERY))
+
         def time():
             date=datetime.now()
             format_date=f"{date:%a, %d %b %Y \n%H : %M : %S}" 

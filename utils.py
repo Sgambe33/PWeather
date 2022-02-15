@@ -87,3 +87,8 @@ def windowsGps():
     location = geolocator.reverse((out[0], out[1]))
     address = location.raw['address']
     return address.get('city', '')
+
+def getWttr(QUERY):
+    urlWttr = 'https://wttr.in'
+    res = requests.get(urlWttr + QUERY)
+    return res.text
