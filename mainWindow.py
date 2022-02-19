@@ -1,6 +1,8 @@
 from datetime import *
+import pathlib
 from tkinter import messagebox
 from turtle import width
+import webbrowser
 import pygubu
 import utils
 from meteostat import *
@@ -14,13 +16,20 @@ HUMIDITYQUERY = "/?format=%h"
 PRECIPITATIONQUERY = "/?format=%p"
 WCONDITIONQUERY = "/?format=%c"
 LOCAL_CITY_NAME = utils.getWttr(LOCATIONQUERY)
+PROJECT_PATH = pathlib.Path(__file__).parent
+PROJECT_UI = PROJECT_PATH / "mainwindow.ui"
 
-
+start = datetime.today() - timedelta(hours=24)
+end = datetime.today() 
+data = Hourly(utils.getStationIdWithCityName(LOCAL_CITY_NAME), start, end )
+data = data.fetch() 
+print(str(data["temp"]))
 class Application:
     #Definizione contenuto labels e frames
     def __init__(self, master):
         self.builder = builder = pygubu.Builder()
-        builder.add_from_file('mainwindow.ui')
+        builder.add_resource_path(PROJECT_PATH)
+        builder.add_from_file(PROJECT_UI)
         self.mainwindow = builder.get_object('frame1', master)
 
         localName = self.builder.get_object('localName')
@@ -37,17 +46,11 @@ class Application:
         localName.config(text=LOCAL_CITY_NAME)
         weatherIcon.config(text=utils.getWttr(WCONDITIONQUERY), font=("Arial", 15))
 
-
-
         fcontainer = builder.get_object('plotFrame')
-        
-        # Setup matplotlib canvas
         self.figure = fig = Figure(figsize=(5, 4),dpi=100)
         self.canvas = canvas = FigureCanvasTkAgg(fig, master=fcontainer)
         canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
-
-        # Connect button callback
         builder.connect_callbacks(self)
         def time():
             date=datetime.now()
@@ -58,7 +61,7 @@ class Application:
         builder.connect_callbacks(self)
         time()
 
-    #Azioni pulsanti
+            #Azioni pulsanti
     def lstWeekBtn(self):
         start = datetime.today() - timedelta(days=7)
         end = datetime.today() 
@@ -71,12 +74,32 @@ class Application:
         
     def weatherRecordsBtn(self):
         messagebox.showinfo(title="Archivi dati", message="Ecco gli archivi dati")
+
+    def tempBtn(self):
+        self.figure.clear()
+        a = self.figure.add_subplot(111)
+        a.plot([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],data["temp"])
+        self.canvas.draw()
+    def humBtn(self):
+        self.figure.clear()
+        a = self.figure.add_subplot(111)
+        a.plot([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],data["rhum"])
+        self.canvas.draw()
+    def precBtn(self):
+        self.figure.clear()
+        a = self.figure.add_subplot(111)
+        a.plot([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],data["prcp"])
+        self.canvas.draw()
         
     def optionsBtn(self):
         messagebox.showinfo(title="Impostazioni", message="Hai aperto le impostazioni")
-        a = self.figure.add_subplot(111)
-        a.plot([1,2,3,4,5,6,7,8],[5,6,1,3,8,9,3,5])
-        self.canvas.draw()
+        
+    def infoBtn(self):
+        messagebox.showinfo(title="Informazioni", message="Hai aperto le informazioni")
+       
+
+    def gitBtn(self):
+        webbrowser.open_new(r"https://github.com/Sgambe33/PWeather")
         
 root = Tk()
 app = Application(root)
