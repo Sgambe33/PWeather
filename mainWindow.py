@@ -40,6 +40,7 @@ class Application:
         localPrecipitationBtn = self.builder.get_object('localPrecipitationBtn')
         plotFrame = self.builder.get_object('plotFrame')
         
+        
         localTemperatureBtn.config(text="Temperature: " + utils.getWttr(TEMPERATUREQUERY))
         localHumidityBtn.config(text="Humidity: " + utils.getWttr(HUMIDITYQUERY))
         localPrecipitationBtn.config(text="Precipitation: " + utils.getWttr(PRECIPITATIONQUERY))
@@ -74,6 +75,8 @@ class Application:
         
     def weatherRecordsBtn(self):
         messagebox.showinfo(title="Archivi dati", message="Ecco gli archivi dati")
+        calendario = self.builder.get_object('calendar')
+        calendario. 
 
     def tempBtn(self):
         self.figure.clear()

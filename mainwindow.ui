@@ -105,7 +105,7 @@
               <property name="height">40</property>
               <property name="width">40</property>
               <property name="x">20</property>
-              <property name="y">0</property>
+              <property name="y">17</property>
             </layout>
           </object>
         </child>
@@ -220,6 +220,17 @@
               <property name="width">40</property>
               <property name="x">97</property>
               <property name="y">440</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="pygubu.builder.widgets.calendarframe" id="calendar">
+            <property name="firstweekday">6</property>
+            <property name="month">1</property>
+            <layout manager="place">
+              <property name="width">220</property>
+              <property name="x">11</property>
+              <property name="y">160</property>
             </layout>
           </object>
         </child>
