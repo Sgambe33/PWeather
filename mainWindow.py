@@ -19,11 +19,6 @@ LOCAL_CITY_NAME = utils.getWttr(LOCATIONQUERY)
 PROJECT_PATH = pathlib.Path(__file__).parent
 PROJECT_UI = PROJECT_PATH / "mainwindow.ui"
 
-start = datetime.today() - timedelta(hours=24)
-end = datetime.today() 
-data = Hourly(utils.getStationIdWithCityName(LOCAL_CITY_NAME), start, end )
-data = data.fetch() 
-print(str(data["temp"]))
 class Application:
     #Definizione contenuto labels e frames
     def __init__(self, master):
@@ -74,9 +69,8 @@ class Application:
         messagebox.showinfo(title="Previsioni meteo", message="Ecco le previsioni")
         
     def weatherRecordsBtn(self):
+        
         messagebox.showinfo(title="Archivi dati", message="Ecco gli archivi dati")
-        calendario = self.builder.get_object('calendar')
-        calendario. 
 
     def tempBtn(self):
         self.figure.clear()

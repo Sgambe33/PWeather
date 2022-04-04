@@ -1,3 +1,4 @@
+from calendar import calendar
 from datetime import *
 import pathlib
 import tkinter as tk
@@ -27,14 +28,15 @@ class RecordsViewerApp:
         self.mainwindow.mainloop()
         
     def onFetchButtonClick(self):
-        calendario = self.builder.get_object('calendar1')
+        calendarStart = self.builder.get_object('calendarStart')
+        calendarEnd = self.builder.get_object('calendarEnd')
         csv_frame = self.builder.get_object('csvFrame')
-        print(calendario.get_date())
+        #print(calendario.get_date()) debug
         start = datetime.now() - timedelta(hours=24)
         end = datetime.now()
         data = Hourly('72219', start, end )
         data = data.fetch()
-        pt = Table(parent=csv_frame, dataframe=data, showtoolbar=True, showstatusbar=True)
+        pt = Table(parent=csv_frame, dataframe=data, showtoolbar=True, showstatusbar=True, width=690, height=400)
         pt.show()
 
 
