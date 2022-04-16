@@ -2,9 +2,9 @@
 <interface version="1.1">
   <object class="ttk.Frame" id="frame1">
     <property name="borderwidth">5</property>
-    <property name="height">500</property>
+    <property name="height">600</property>
     <property name="relief">ridge</property>
-    <property name="width">750</property>
+    <property name="width">800</property>
     <layout manager="pack">
       <property name="propagate">True</property>
       <property name="side">top</property>
@@ -21,12 +21,13 @@
         <child>
           <object class="ttk.Frame" id="plotFrame">
             <property name="borderwidth">0</property>
-            <property name="height">380</property>
+            <property name="height">475</property>
             <property name="relief">ridge</property>
-            <property name="width">490</property>
+            <property name="width">540</property>
             <layout manager="place">
               <property name="anchor">nw</property>
-              <property name="y">100</property>
+              <property name="x">5</property>
+              <property name="y">110</property>
             </layout>
           </object>
         </child>
@@ -113,11 +114,11 @@
     </child>
     <child>
       <object class="ttk.Frame" id="sideFrame">
-        <property name="height">490</property>
+        <property name="height">588</property>
         <property name="width">239</property>
         <layout manager="place">
           <property name="anchor">nw</property>
-          <property name="x">500</property>
+          <property name="x">550</property>
           <property name="y">0</property>
         </layout>
         <child>
@@ -125,7 +126,7 @@
             <property name="orient">vertical</property>
             <layout manager="place">
               <property name="anchor">nw</property>
-              <property name="height">496</property>
+              <property name="height">600</property>
               <property name="x">0</property>
               <property name="y">-2</property>
             </layout>
@@ -220,17 +221,6 @@
               <property name="width">40</property>
               <property name="x">97</property>
               <property name="y">440</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="pygubu.builder.widgets.calendarframe" id="calendar">
-            <property name="firstweekday">6</property>
-            <property name="month">1</property>
-            <layout manager="place">
-              <property name="width">220</property>
-              <property name="x">11</property>
-              <property name="y">160</property>
             </layout>
           </object>
         </child>

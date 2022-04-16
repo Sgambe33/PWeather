@@ -1,5 +1,6 @@
 from datetime import *
 import pathlib
+from time import strftime
 from tkinter import messagebox
 from turtle import width
 import webbrowser
@@ -19,8 +20,21 @@ LOCAL_CITY_NAME = utils.getWttr(LOCATIONQUERY)
 PROJECT_PATH = pathlib.Path(__file__).parent
 PROJECT_UI = PROJECT_PATH / "mainwindow.ui"
 
+
+#Default weather data based upon GPS position
+start = datetime.today() - timedelta(hours=24)
+end = datetime.today() 
+data = Hourly(utils.getStationIdWithCityName(LOCAL_CITY_NAME), start, end )
+data = data.fetch()
+print(data)   
+# iterating the columns
+test = []
+for x in data.index:
+    test.append(x.strftime("%H:%M"))
+print(test)
+#print(data.columns.tolist())
 class Application:
-    #Definizione contenuto labels e frames
+        #Definizione contenuto labels e frames
     def __init__(self, master):
         self.builder = builder = pygubu.Builder()
         builder.add_resource_path(PROJECT_PATH)
@@ -43,9 +57,9 @@ class Application:
         weatherIcon.config(text=utils.getWttr(WCONDITIONQUERY), font=("Arial", 15))
 
         fcontainer = builder.get_object('plotFrame')
-        self.figure = fig = Figure(figsize=(5, 4),dpi=100)
+        self.figure = fig = Figure(figsize=(6, 5),dpi=100)
         self.canvas = canvas = FigureCanvasTkAgg(fig, master=fcontainer)
-        canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        canvas.get_tk_widget().pack(side=BOTTOM, fill=BOTH, expand=1)
 
         builder.connect_callbacks(self)
         def time():
@@ -56,6 +70,7 @@ class Application:
 
         builder.connect_callbacks(self)
         time()
+        
 
             #Azioni pulsanti
     def lstWeekBtn(self):
@@ -75,17 +90,20 @@ class Application:
     def tempBtn(self):
         self.figure.clear()
         a = self.figure.add_subplot(111)
-        a.plot([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],data["temp"])
+        a.plot(test,data["temp"])
         self.canvas.draw()
     def humBtn(self):
         self.figure.clear()
         a = self.figure.add_subplot(111)
-        a.plot([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],data["rhum"])
+        #[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+
+        a.set_xticklabels(test, rotation=45)
+        a.plot(test ,data["rhum"],color = 'black', linewidth = 0.4, )
         self.canvas.draw()
     def precBtn(self):
         self.figure.clear()
         a = self.figure.add_subplot(111)
-        a.plot([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],data["prcp"])
+        a.plot(test,data["prcp"])
         self.canvas.draw()
         
     def optionsBtn(self):

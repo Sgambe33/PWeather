@@ -4,7 +4,7 @@ from geopy.geocoders import *
 from datetime import *
 import gettext
 
-geolocator = Nominatim(useragent="testgeopy")
+geolocator = Nominatim(user_agent="meteo-stat")
 
 
 
@@ -16,7 +16,7 @@ while True:
     print(("5. Esci"))
     
     scelta = input()
-    ipData = utils.getLocationFromIP()
+    #ipData = utils.getLocationFromIP()
     match scelta:
         case "1":
             start = datetime.today() - timedelta(days=7)
@@ -27,7 +27,7 @@ while True:
         case "2":
             start = datetime.now() - timedelta(hours=24)
             end = datetime.now()
-            data = Hourly(utils.getStationIdWithIp(utils.geojsip()), start, end )
+            data = Hourly('77139', start, end )
             data = data.fetch() 
             print(data) 
         case "3":

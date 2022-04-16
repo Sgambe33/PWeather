@@ -32,10 +32,11 @@
       </object>
     </child>
     <child>
-      <object class="ttk.Button" id="fetchButton">
-        <property name="command" type="command" cbtype="simple">onFetchButtonClick</property>
+      <object class="ttk.Button" id="dailyButton">
+        <property name="command" type="command" cbtype="simple">onDailyFetchButtonClick</property>
         <property name="default">normal</property>
-        <property name="text" translatable="yes">Fetch data</property>
+        <property name="text" translatable="yes">Fetch daily data</property>
+        <property name="width">25</property>
         <layout manager="place">
           <property name="anchor">nw</property>
           <property name="relx">0.0</property>
@@ -88,35 +89,74 @@
       </object>
     </child>
     <child>
-      <object class="ttk.Radiobutton" id="hourlyOpt">
-        <property name="state">normal</property>
-        <property name="text" translatable="yes">Hourly data</property>
+      <object class="ttk.Button" id="infoBtn">
+        <property name="command" type="command" cbtype="simple">infoBtn</property>
+        <property name="image">more-info.png</property>
+        <property name="text" translatable="yes">Inf</property>
         <layout manager="place">
           <property name="anchor">nw</property>
-          <property name="x">180</property>
-          <property name="y">520</property>
+          <property name="height">40</property>
+          <property name="width">40</property>
+          <property name="x">760</property>
+          <property name="y">560</property>
         </layout>
       </object>
     </child>
     <child>
-      <object class="ttk.Radiobutton" id="dailyOpt">
-        <property name="state">normal</property>
-        <property name="text" translatable="yes">Daily data</property>
+      <object class="ttk.Button" id="hourlyBtn">
+        <property name="command" type="command" cbtype="simple">onHourlyFetchButtonClick</property>
+        <property name="default">normal</property>
+        <property name="text" translatable="yes">Fetch hourly data</property>
+        <property name="width">25</property>
         <layout manager="place">
           <property name="anchor">nw</property>
-          <property name="x">180</property>
+          <property name="relx">0.0</property>
+          <property name="rely">0.0</property>
+          <property name="x">320</property>
+          <property name="y">505</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="monhtlyButton">
+        <property name="command" type="command" cbtype="simple">onMonthlyFetchButtonClick</property>
+        <property name="default">normal</property>
+        <property name="text" translatable="yes">Fetch monthly data</property>
+        <property name="width">25</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="relx">0.0</property>
+          <property name="rely">0.0</property>
+          <property name="x">320</property>
+          <property name="y">565</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Entry" id="localityInput">
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="x">570</property>
           <property name="y">540</property>
         </layout>
       </object>
     </child>
     <child>
-      <object class="ttk.Radiobutton" id="monthlyOpt">
-        <property name="state">normal</property>
-        <property name="text" translatable="yes">Monthly data</property>
+      <object class="ttk.Label" id="localName">
+        <property name="text" translatable="yes">Locality name:</property>
         <layout manager="place">
           <property name="anchor">nw</property>
-          <property name="x">180</property>
-          <property name="y">560</property>
+          <property name="x">570</property>
+          <property name="y">520</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="outputLabel">
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="x">570</property>
+          <property name="y">570</property>
         </layout>
       </object>
     </child>
