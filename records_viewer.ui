@@ -19,13 +19,16 @@
           <property name="y">0</property>
         </layout>
         <child>
-          <object class="ttk.Label" id="label3">
-            <property name="anchor">center</property>
-            <property name="text" translatable="yes">No data loaded yet!</property>
+          <object class="ttk.Button" id="button1">
+            <property name="command" type="command" cbtype="simple">infoBtn</property>
+            <property name="image">more-info.png</property>
+            <property name="text" translatable="yes">Inf</property>
             <layout manager="place">
-              <property name="anchor">center</property>
-              <property name="x">400</property>
-              <property name="y">245</property>
+              <property name="anchor">nw</property>
+              <property name="height">40</property>
+              <property name="width">40</property>
+              <property name="x">760</property>
+              <property name="y">560</property>
             </layout>
           </object>
         </child>
@@ -157,6 +160,20 @@
           <property name="anchor">nw</property>
           <property name="x">570</property>
           <property name="y">570</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="mapsButton">
+        <property name="command" type="command" cbtype="simple">onStationShowMapsClick</property>
+        <property name="image">waypoint.png</property>
+        <property name="text" translatable="yes">Inf</property>
+        <layout manager="place">
+          <property name="anchor">nw</property>
+          <property name="height">40</property>
+          <property name="width">40</property>
+          <property name="x">760</property>
+          <property name="y">515</property>
         </layout>
       </object>
     </child>

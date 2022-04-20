@@ -22,7 +22,6 @@
           <object class="ttk.Frame" id="plotFrame">
             <property name="borderwidth">0</property>
             <property name="height">475</property>
-            <property name="relief">ridge</property>
             <property name="width">540</property>
             <layout manager="place">
               <property name="anchor">nw</property>

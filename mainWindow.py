@@ -7,6 +7,7 @@ import webbrowser
 import pygubu
 import utils
 from meteostat import *
+import tkinter as tk
 from tkinter import *
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
@@ -47,7 +48,7 @@ class Application:
         localTemperatureBtn = self.builder.get_object('localTemperatureBtn')
         localHumidityBtn = self.builder.get_object('localHumidityBtn')
         localPrecipitationBtn = self.builder.get_object('localPrecipitationBtn')
-        plotFrame = self.builder.get_object('plotFrame')
+        #plotFrame = self.builder.get_object('plotFrame')
         
         
         localTemperatureBtn.config(text="Temperature: " + utils.getWttr(TEMPERATUREQUERY))
@@ -56,10 +57,12 @@ class Application:
         localName.config(text=LOCAL_CITY_NAME)
         weatherIcon.config(text=utils.getWttr(WCONDITIONQUERY), font=("Arial", 15))
 
-        fcontainer = builder.get_object('plotFrame')
-        self.figure = fig = Figure(figsize=(6, 5),dpi=100)
+        fcontainer = self.builder.get_object('plotFrame')
+        self.figure = fig = Figure(figsize=(5, 7), dpi=100)
+                
+        
         self.canvas = canvas = FigureCanvasTkAgg(fig, master=fcontainer)
-        canvas.get_tk_widget().pack(side=BOTTOM, fill=BOTH, expand=1)
+        canvas.get_tk_widget().pack(expand=3)
 
         builder.connect_callbacks(self)
         def time():
@@ -89,20 +92,18 @@ class Application:
 
     def tempBtn(self):
         self.figure.clear()
-        a = self.figure.add_subplot(111)
+        a = self.figure.add_subplot()
         a.plot(test,data["temp"])
         self.canvas.draw()
     def humBtn(self):
         self.figure.clear()
-        a = self.figure.add_subplot(111)
-        #[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
-
+        a = self.figure.add_subplot()
         a.set_xticklabels(test, rotation=45)
         a.plot(test ,data["rhum"],color = 'black', linewidth = 0.4, )
         self.canvas.draw()
     def precBtn(self):
         self.figure.clear()
-        a = self.figure.add_subplot(111)
+        a = self.figure.add_subplot()
         a.plot(test,data["prcp"])
         self.canvas.draw()
         

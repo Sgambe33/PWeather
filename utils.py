@@ -24,7 +24,7 @@ def getPosFromCity(cityName):
     return location
 
 def getPlaceFromCity(cityName):
-    location = getPosFromCity(cityName=cityName)
+    location = getPosFromCity(cityName)
     place = Point(location.latitude, location.longitude, 10)
     return place
 
