@@ -1,15 +1,17 @@
 from datetime import *
+from email.policy import default
 import pathlib
 from time import strftime
 from tkinter import messagebox
 from turtle import width
 import webbrowser
+from matplotlib import rcParams
 import pygubu
 import utils
 from meteostat import *
 import tkinter as tk
 from tkinter import *
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
 
 LOCATIONQUERY = "/?format=%l"
@@ -57,14 +59,13 @@ class Application:
         localName.config(text=LOCAL_CITY_NAME)
         weatherIcon.config(text=utils.getWttr(WCONDITIONQUERY), font=("Arial", 15))
 
-        fcontainer = self.builder.get_object('plotFrame')
-        self.figure = fig = Figure(figsize=(5, 7), dpi=100)
-                
-        
+        fcontainer = self.builder.get_object('localFrame')
+        self.figure = fig = Figure(figsize=(5.4, 4.5), dpi=100)        
         self.canvas = canvas = FigureCanvasTkAgg(fig, master=fcontainer)
-        canvas.get_tk_widget().pack(expand=3)
-
+        canvas.get_tk_widget().pack(expand=1, padx=5, pady=130)
+                
         builder.connect_callbacks(self)
+
         def time():
             date=datetime.now()
             format_date=f"{date:%a, %d %b %Y \n%H : %M : %S}" 
@@ -93,18 +94,20 @@ class Application:
     def tempBtn(self):
         self.figure.clear()
         a = self.figure.add_subplot()
-        a.plot(test,data["temp"])
+        a.set_xticklabels(test, rotation=90)
+        a.plot(test,data["temp"], linewidth = 0.4)
         self.canvas.draw()
     def humBtn(self):
         self.figure.clear()
         a = self.figure.add_subplot()
-        a.set_xticklabels(test, rotation=45)
-        a.plot(test ,data["rhum"],color = 'black', linewidth = 0.4, )
+        a.set_xticklabels(test, rotation=90, fontdict={'fontsize': 8})
+        a.plot(test ,data["rhum"], linewidth = 0.4)
         self.canvas.draw()
     def precBtn(self):
         self.figure.clear()
         a = self.figure.add_subplot()
-        a.plot(test,data["prcp"])
+        a.set_xticklabels(test, rotation=90)
+        a.plot(test,data["prcp"], linewidth = 0.4)
         self.canvas.draw()
         
     def optionsBtn(self):

@@ -19,18 +19,6 @@
           <property name="y">0</property>
         </layout>
         <child>
-          <object class="ttk.Frame" id="plotFrame">
-            <property name="borderwidth">0</property>
-            <property name="height">475</property>
-            <property name="width">540</property>
-            <layout manager="place">
-              <property name="anchor">nw</property>
-              <property name="x">5</property>
-              <property name="y">110</property>
-            </layout>
-          </object>
-        </child>
-        <child>
           <object class="ttk.Button" id="localTemperatureBtn">
             <property name="command" type="command" cbtype="simple">tempBtn</property>
             <property name="text" translatable="yes">button1</property>
